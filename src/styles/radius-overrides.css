@@ -1,0 +1,109 @@
+:root {
+  --radius-card: 9px;
+  --radius-panel: 7px;
+  --radius-control: 6px;
+  --radius-small: 4px;
+}
+
+.config-card,
+.module-note-card,
+.runtime-console,
+.export-dialog,
+.export-modal,
+.setup-card,
+.setup-panel,
+.project-status-card,
+.module-status {
+  border-radius: var(--radius-card);
+}
+
+.chart-placeholder__frame,
+.matrix-preview__scroll,
+.preview-table-shell,
+.ribote-gsea-table-wrap,
+.ribote-d3-host,
+.analysis-network-placeholder,
+.analysis-heatmap,
+.module-parameter-list,
+.preprocess-metrics,
+.preprocess-qc-grid,
+.annotation-expected,
+.annotation-status,
+.annotation-found-item,
+.sample-pairing-panel,
+.pairing-dropzone,
+.result-workspace-panel {
+  border-radius: var(--radius-panel);
+}
+
+.action-button,
+.static-field,
+.path-row__input,
+.path-row__button,
+.module-status__action,
+.summary-list__item,
+.species-selector__search,
+.species-selector__panel,
+.species-item,
+.species-item__icon,
+.species-selector__footer,
+.load-data-select,
+.assignment-board,
+.sample-bucket,
+.sample-chip,
+.sample-drag-ghost,
+.pairing-table,
+.pairing-table__sample,
+.pairing-hint,
+.load-data-meta span,
+.module-parameter-field__control,
+.themed-select__button,
+.preprocess-tab,
+.matrix-preview__search input,
+.matrix-preview__jump input,
+.matrix-preview__jump button,
+.matrix-preview__pager-actions button,
+.analysis-gate,
+.inline-alert,
+.export-dialog__format,
+.export-dialog__field input,
+.runtime-console__shell,
+.runtime-console__toggle,
+.sample-card,
+.sample-token,
+.annotation-chip,
+.load-data-file-picker,
+.pairing-action,
+.project-status-card__message,
+.meta-plot-summary-item,
+.ribote-replica-logo-panel {
+  border-radius: var(--radius-control);
+}
+
+.config-card__icon,
+.themed-select__menu,
+.themed-select__option,
+.runtime-console__process,
+.runtime-console__line,
+.matrix-preview__pager-ellipsis,
+.ribote-d3-tooltip,
+.ribote-d3-legend rect {
+  border-radius: var(--radius-small);
+}
+
+.nav-item,
+.nav-subitem,
+.preprocess-tab,
+.action-button,
+.runtime-console__toggle {
+  border-radius: var(--radius-control);
+}
+
+.nav-item__rail,
+.app-shell__nav-item::before {
+  border-radius: 0 var(--radius-control) var(--radius-control) 0;
+}
+
+.module-page :where(input, select, textarea, button):not(.nav-item):not(.nav-subitem) {
+  border-radius: var(--radius-control);
+}

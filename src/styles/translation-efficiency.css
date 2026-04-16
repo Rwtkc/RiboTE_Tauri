@@ -1,0 +1,39 @@
+.translation-efficiency-page {
+  --translation-accent: var(--ribo-accent-warm);
+}
+
+.translation-parameter-list {
+  grid-template-columns: minmax(190px, 0.9fr) minmax(112px, 0.5fr) minmax(112px, 0.5fr) minmax(180px, 0.86fr);
+  align-items: end;
+}
+
+.translation-export-button {
+  min-height: 34px;
+  padding: 7px 10px;
+  border-radius: 11px;
+  font-size: 0.62rem;
+  background: var(--app-card);
+  color: var(--app-text);
+}
+
+.translation-result-placeholder {
+  min-height: 320px;
+  background:
+    radial-gradient(circle at 18% 26%, rgba(212, 90, 42, 0.13), transparent 28%),
+    radial-gradient(circle at 78% 16%, rgba(20, 119, 130, 0.13), transparent 24%),
+    linear-gradient(to right, rgba(212, 90, 42, 0.11) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 119, 130, 0.11) 1px, transparent 1px);
+  background-size: auto, auto, 24px 24px, 24px 24px;
+}
+
+@media (max-width: 1200px) {
+  .translation-parameter-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .translation-parameter-list {
+    grid-template-columns: 1fr;
+  }
+}

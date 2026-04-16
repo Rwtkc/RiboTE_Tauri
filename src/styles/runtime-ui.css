@@ -1,0 +1,487 @@
+.console-shell {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 3;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  background: #020617;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.28);
+  transition: height 220ms ease;
+}
+
+.console-shell:not(.is-expanded) {
+  height: 48px;
+}
+
+.console-shell.is-expanded {
+  height: 288px;
+}
+
+.console-shell__head {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 24px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.05);
+  color: #d6d3d1;
+  cursor: pointer;
+}
+
+.console-shell__title,
+.console-shell__actions,
+.console-shell__engine {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.console-shell__chevron,
+.console-shell__terminate {
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.console-shell__title span,
+.console-shell__engine span,
+.console-shell__terminate span {
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.console-shell__engine {
+  color: #10b981;
+}
+
+.console-shell__actions {
+  gap: 12px;
+}
+
+.console-shell__terminate {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: rgba(220, 38, 38, 0.22);
+  color: #fecaca;
+  line-height: 1;
+  transition: background 160ms ease, color 160ms ease, opacity 160ms ease;
+  cursor: pointer;
+}
+
+.console-shell__terminate:hover:not(:disabled) {
+  background: rgba(220, 38, 38, 0.34);
+  color: #fff1f2;
+}
+
+.console-shell__terminate:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.console-shell__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #d6d3d1;
+}
+
+.console-shell__body {
+  height: calc(100% - 48px);
+  overflow: auto;
+  padding: 24px;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 0.7rem;
+  line-height: 1.7;
+  color: #d6d3d1;
+}
+
+.console-shell__empty {
+  color: #a8a29e;
+}
+
+.console-line {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 6px;
+  padding-left: 14px;
+  border-left: 1px solid #292524;
+}
+
+.console-line__time {
+  color: #57534e;
+}
+
+.console-line__type {
+  min-width: 60px;
+  text-transform: lowercase;
+}
+
+.console-line--error .console-line__type {
+  color: #fb7185;
+}
+
+.console-line--command .console-line__type {
+  color: #f59e0b;
+}
+
+.console-line--success .console-line__type,
+.console-line--info .console-line__type {
+  color: #34d399;
+}
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--app-bg);
+  z-index: 50;
+}
+
+.loading-screen__center {
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+}
+
+.loading-screen__mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 22px;
+  border: 2px solid rgba(20, 119, 130, 0.24);
+  background: rgba(20, 119, 130, 0.12);
+  color: var(--ribo-primary);
+}
+
+.loading-screen__mark::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 999px;
+  background: rgba(212, 90, 42, 0.18);
+  filter: blur(22px);
+  z-index: -1;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+}
+
+.loading-screen__copy {
+  text-align: center;
+}
+
+.loading-screen__copy h2 {
+  margin: 0;
+  font-family: var(--app-display-font);
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+.loading-screen__status {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.loading-screen__status p {
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--app-placeholder);
+}
+
+.loading-screen__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--ribo-primary);
+  animation: pulse-dot 1.3s ease-in-out infinite;
+}
+
+.loading-screen__bar {
+  width: 192px;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(20, 119, 130, 0.18);
+}
+
+.loading-screen__bar-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--ribo-primary);
+  transform: translateX(-100%);
+  animation: progress-fill 1.2s ease-out forwards;
+}
+
+@keyframes progress-fill {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(20, 119, 130, 0.35);
+}
+
+/* Shared table style: keep all result/preview tables aligned with Pathway Table. */
+.ribote-gsea-table-wrap,
+.matrix-preview__scroll,
+.preview-table-shell {
+  overflow-x: auto;
+  overflow-y: visible;
+  border: 1px solid rgba(20, 119, 130, 0.16);
+  border-radius: var(--radius-control);
+  background: rgba(247, 251, 252, 0.88);
+}
+
+.ribote-signalp-table,
+.ribote-enrichment-table,
+.matrix-preview__scroll table,
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(247, 251, 252, 0.88);
+  color: var(--app-text);
+  font-family: var(--app-body-font);
+  font-size: 0.72rem;
+}
+
+.matrix-preview__scroll table {
+  min-width: 900px;
+}
+
+.preview-table {
+  min-width: 760px;
+}
+
+.ribote-signalp-table th,
+.ribote-signalp-table td,
+.ribote-enrichment-table th,
+.ribote-enrichment-table td,
+.matrix-preview__scroll th,
+.matrix-preview__scroll td,
+.preview-table th,
+.preview-table td {
+  padding: 0.62rem 0.7rem;
+  border-right: 0;
+  border-bottom: 1px solid rgba(20, 119, 130, 0.12);
+  color: var(--app-text);
+  font-family: var(--app-body-font);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.ribote-signalp-table th,
+.ribote-enrichment-table th,
+.matrix-preview__scroll th,
+.preview-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: rgba(216, 237, 240, 0.68);
+  color: var(--ribo-primary-deep);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ribote-signalp-table tbody tr:nth-child(even),
+.ribote-enrichment-table tbody tr:nth-child(even),
+.matrix-preview__scroll tbody tr:nth-child(even),
+.preview-table tbody tr:nth-child(even) {
+  background: rgba(223, 236, 239, 0.32);
+}
+
+.ribote-signalp-table tbody tr.is-selected,
+.ribote-enrichment-table tbody tr.is-selected,
+.matrix-preview__scroll tbody tr.is-selected,
+.preview-table tbody tr.is-selected {
+  background: rgba(241, 199, 182, 0.45);
+  box-shadow: inset 0.18rem 0 0 var(--ribo-accent);
+}
+
+.ribote-signalp-table tbody tr,
+.ribote-enrichment-table tbody tr,
+.matrix-preview__scroll tbody tr,
+.preview-table tbody tr {
+  transition: background 0.16s ease;
+}
+
+.ribote-signalp-table tbody tr:hover,
+.ribote-enrichment-table tbody tr:hover,
+.matrix-preview__scroll tbody tr:hover,
+.preview-table tbody tr:hover {
+  background: rgba(216, 237, 240, 0.28);
+}
+
+.ribote-gsea-table-copy,
+.ribote-table-pagination__meta,
+.matrix-preview__note {
+  color: var(--app-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.ribote-table-pagination,
+.matrix-preview__pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ribote-table-pagination__actions,
+.matrix-preview__pager-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ribote-btn,
+.matrix-preview__jump button,
+.matrix-preview__pager-actions button {
+  min-height: 2.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(20, 119, 130, 0.2);
+  border-radius: var(--radius-control);
+  background: rgba(247, 251, 252, 0.9);
+  color: var(--app-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0 0.78rem;
+  transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.ribote-btn:hover:not(:disabled),
+.matrix-preview__jump button:hover:not(:disabled),
+.matrix-preview__pager-actions button:hover:not(:disabled),
+.matrix-preview__pager-actions button.is-active,
+.ribote-btn.is-active {
+  border-color: rgba(212, 90, 42, 0.55);
+  background: linear-gradient(180deg, rgba(212, 90, 42, 0.18), rgba(212, 90, 42, 0.08));
+  color: #76320f;
+  box-shadow: 0 0.32rem 0.9rem rgba(212, 90, 42, 0.18);
+}
+
+.ribote-btn:disabled,
+.matrix-preview__jump button:disabled,
+.matrix-preview__pager-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+.ribote-table-pagination__ellipsis,
+.matrix-preview__pager-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  color: var(--app-muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.ribote-codon-results .ribote-gsea-table-copy {
+  color: var(--app-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.ribote-codon-results .ribote-enrichment-table th,
+.ribote-codon-results .ribote-enrichment-table td {
+  padding: 0.62rem 0.7rem;
+  border-bottom: 1px solid rgba(20, 119, 130, 0.12);
+  color: var(--app-text);
+  font-family: var(--app-body-font);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.ribote-codon-results .ribote-enrichment-table th {
+  background: rgba(216, 237, 240, 0.68);
+  color: var(--ribo-primary-deep);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ribote-codon-results .ribote-enrichment-table tbody tr:nth-child(even) {
+  background: rgba(223, 236, 239, 0.32);
+}
+
+.ribote-codon-results .ribote-table-pagination__meta {
+  color: var(--app-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.ribote-codon-results .ribote-table-pagination__actions,
+.ribote-codon-results .ribote-table-pagination__pages {
+  gap: 0.5rem;
+}
+
+.ribote-codon-results .ribote-table-pagination__actions .ribote-btn {
+  min-height: 2.2rem;
+  padding: 0 0.78rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}

@@ -1,0 +1,12 @@
+@import "./styles/tokens.css";
+@import "./styles/app-shell.css";
+@import "./styles/module-shell.css";
+@import "./styles/data-preprocess.css";
+@import "./styles/translation-efficiency.css";
+@import "./styles/analysis-modules.css";
+@import "./styles/analysis-results.css";
+@import "./styles/codon-module.css";
+@import "./styles/export-modal.css";
+@import "./styles/setup.css";
+@import "./styles/runtime-ui.css";
+@import "./styles/radius-overrides.css";

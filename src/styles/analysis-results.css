@@ -1,0 +1,269 @@
+.ribote-d3-card {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(10, 89, 99, 0.28);
+  border-radius: var(--radius-card);
+  background: rgba(247, 251, 252, 0.82);
+  box-shadow: 0 0.12rem 0.3rem rgba(16, 35, 42, 0.05), 0 0 0 0.08rem rgba(20, 119, 130, 0.08);
+}
+
+.ribote-d3-card__title {
+  margin: 0;
+  color: var(--app-text);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.ribote-result-card {
+  padding: 0.8rem 0.95rem;
+  border: 1px solid rgba(20, 119, 130, 0.16);
+  border-radius: var(--radius-card);
+  background: rgba(216, 237, 240, 0.45);
+}
+
+.ribote-result-card--warning {
+  border-color: rgba(212, 90, 42, 0.28);
+  background: rgba(241, 199, 182, 0.32);
+}
+
+.ribote-result-card__copy {
+  margin: 0;
+  color: var(--app-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.ribote-clustering-results,
+.ribote-network-results,
+.ribote-signalp-results,
+.ribote-gsea-results,
+.ribote-enrichment-results {
+  display: grid;
+  gap: 1rem;
+}
+
+.ribote-clustering-grid,
+.ribote-signalp-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.ribote-clustering-host,
+.ribote-network-host,
+.ribote-signalp-host {
+  position: relative;
+}
+
+.ribote-clustering-panel--main .ribote-d3-host,
+.ribote-clustering-panel--detail .ribote-d3-host,
+.ribote-network-panel--graph .ribote-d3-host {
+  height: 43rem;
+}
+
+.ribote-clustering-panel--main .ribote-d3-host,
+.ribote-clustering-panel--detail .ribote-d3-host {
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  padding: 12px 0 16px;
+}
+
+.ribote-signalp-panel--plot .ribote-d3-host {
+  min-height: 0;
+  height: 34rem;
+  border: 0;
+  background: transparent;
+  padding: 12px 0 10px;
+}
+
+.ribote-gsea-host {
+  min-height: 32rem;
+}
+
+.ribote-enrichment-host {
+  min-height: 30rem;
+}
+
+.ribote-clustering-detail {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  border: 1px solid rgba(20, 119, 130, 0.16);
+  border-radius: var(--radius-card);
+  background: rgba(247, 251, 252, 0.78);
+}
+
+.ribote-clustering-detail__header h4 {
+  margin: 0;
+  color: var(--app-text);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.ribote-clustering-detail__header p,
+.ribote-clustering-detail__empty {
+  margin: 0.35rem 0 0;
+  color: var(--app-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.ribote-clustering-detail__grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.ribote-clustering-detail__item {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(20, 119, 130, 0.14);
+  border-radius: var(--radius-field);
+  background: rgba(223, 236, 239, 0.55);
+}
+
+.ribote-clustering-detail__label {
+  color: var(--app-muted);
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ribote-clustering-detail__value {
+  color: var(--app-text);
+  font-size: 0.78rem;
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ribote-network-actions {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ribote-network-toggle {
+  min-height: 2.15rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--app-border);
+  border-radius: 999px;
+  background: rgba(247, 251, 252, 0.94);
+  color: var(--ribo-primary-deep);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.75);
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.ribote-network-toggle:hover {
+  transform: translateY(-1px);
+  border-color: rgba(20, 119, 130, 0.28);
+  background: linear-gradient(180deg, rgba(216, 237, 240, 0.88), rgba(223, 236, 239, 0.66));
+  color: var(--ribo-primary);
+}
+
+.ribote-network-toggle:focus-visible {
+  outline: none;
+  border-color: var(--ribo-primary);
+  box-shadow: 0 0 0 2px rgba(20, 119, 130, 0.12), inset 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.ribote-network-node-label {
+  fill: #17292f;
+  font-family: var(--app-body-font);
+  font-size: 11px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: rgba(247, 251, 252, 0.92);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.ribote-gsea-table-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ribote-gsea-table-copy {
+  margin: 0.3rem 0 0;
+  color: var(--app-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.ribote-gsea-table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(20, 119, 130, 0.16);
+  border-radius: var(--radius-field);
+}
+
+.ribote-signalp-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(247, 251, 252, 0.88);
+}
+
+.ribote-signalp-table th,
+.ribote-signalp-table td {
+  padding: 0.62rem 0.7rem;
+  border-bottom: 1px solid rgba(20, 119, 130, 0.12);
+  color: var(--app-text);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ribote-signalp-table th {
+  background: rgba(216, 237, 240, 0.68);
+  color: var(--ribo-primary-deep);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ribote-signalp-table tbody tr:nth-child(even) {
+  background: rgba(223, 236, 239, 0.32);
+}
+
+.ribote-signalp-table tbody tr.is-selected {
+  background: rgba(241, 199, 182, 0.45);
+  box-shadow: inset 0.18rem 0 0 var(--ribo-accent);
+}
+
+.ribote-signalp-table tbody tr {
+  cursor: default;
+}
+
+.ribote-gsea-results .ribote-signalp-table tbody tr {
+  cursor: pointer;
+}
+
+@media (min-width: 76rem) {
+  .ribote-clustering-grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 56rem) {
+  .ribote-clustering-detail__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

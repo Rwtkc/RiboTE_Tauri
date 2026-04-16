@@ -1,0 +1,62 @@
+:root {
+  color-scheme: light;
+  --ribo-primary: #147782;
+  --ribo-primary-deep: #0a5963;
+  --ribo-accent-soft: #d8edf0;
+  --ribo-accent-warm: #d45a2a;
+  --ribo-accent-warm-deep: #934018;
+  --app-bg: #e7f0f2;
+  --app-sidebar: #f7fbfc;
+  --app-card: #f7fbfc;
+  --app-surface-soft: #dfecef;
+  --app-surface-strong: #ffffff;
+  --app-text: #17292f;
+  --app-muted: #5a6b73;
+  --app-border: #b6c8cf;
+  --app-border-soft: rgba(20, 119, 130, 0.18);
+  --app-placeholder: #738990;
+  --app-input: #eef6f8;
+  --app-sidebar-active: #d8edf0;
+  --app-warm-soft: #f1c7b6;
+  --app-warm-soft-strong: #f1c7b6;
+  --app-warm-border: rgba(212, 90, 42, 0.34);
+  --app-shadow: 0 0.75rem 1.875rem rgba(16, 35, 42, 0.08);
+  --app-danger: #dc2626;
+  --app-warning: #d97706;
+  --app-body-font: sans-serif;
+  --app-display-font: sans-serif;
+  font-family: var(--app-body-font);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(20, 119, 130, 0.12), transparent 32%),
+    radial-gradient(circle at top right, rgba(212, 90, 42, 0.08), transparent 26%),
+    linear-gradient(180deg, #eef6f8 0%, var(--app-bg) 100%);
+  color: var(--app-text);
+}
+
+body {
+  font-family: var(--app-body-font);
+  font-synthesis: none;
+  overflow: hidden;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}

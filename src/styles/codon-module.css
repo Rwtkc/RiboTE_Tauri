@@ -1,0 +1,807 @@
+.codon-module-page {
+  --rm-text: var(--app-text);
+  --rm-muted: var(--app-muted);
+  --codon-parameter-gap: 10px;
+  --codon-single-control-width: calc((100% - (3 * var(--codon-parameter-gap))) / 4);
+}
+
+.codon-picker-field {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.codon-picker-field--wide {
+  grid-column: 1 / -1;
+}
+
+.codon-module__hero-hint {
+  max-width: 44rem;
+  margin-top: 0.8rem;
+}
+
+.ribote-field--sample-config {
+  display: grid;
+  gap: 0.7rem;
+  width: 100%;
+  max-width: var(--codon-single-control-width);
+}
+
+.ribote-sample-config {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ribote-codon-picker {
+  gap: 0.85rem;
+}
+
+.ribote-codon-picker > .ribote-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border: 0.0625rem solid rgba(20, 119, 130, 0.2);
+  border-radius: 0.5rem;
+  background: rgba(247, 251, 252, 0.9);
+  color: var(--app-text);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0 1rem;
+  cursor: pointer;
+  box-shadow: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.ribote-codon-picker > .ribote-btn--block {
+  width: 100%;
+  max-width: none;
+  flex: 0 0 auto;
+}
+
+.ribote-codon-picker > .ribote-btn:hover:not(:disabled) {
+  transform: translateY(-0.0625rem);
+  border-color: rgba(20, 119, 130, 0.28);
+  background: rgba(247, 251, 252, 0.98);
+}
+
+.ribote-codon-picker > .ribote-btn:focus-visible {
+  outline: 2px solid rgba(20, 119, 130, 0.2);
+  outline-offset: 2px;
+  border-color: rgba(20, 119, 130, 0.32);
+}
+
+.ribote-codon-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.ribote-codon-picker__grid--modal {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.ribote-codon-card {
+  min-height: 2.6rem;
+  border: 1px solid rgba(20, 119, 130, 0.2);
+  border-radius: var(--radius-control);
+  background: rgba(247, 251, 252, 0.92);
+  color: var(--app-text);
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, color 180ms ease;
+}
+
+.ribote-codon-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(212, 90, 42, 0.34);
+  background: rgba(239, 247, 249, 0.96);
+  box-shadow: 0 0.3rem 0.75rem rgba(16, 35, 42, 0.08);
+}
+
+.ribote-codon-card.is-active {
+  border-color: rgba(212, 90, 42, 0.5);
+  background: linear-gradient(180deg, rgba(212, 90, 42, 0.18), rgba(212, 90, 42, 0.08));
+  color: #76320f;
+  box-shadow: 0 0.3rem 0.85rem rgba(212, 90, 42, 0.14), inset 0 0 0 1px rgba(212, 90, 42, 0.1);
+}
+
+.ribote-sample-config__summary,
+.ribote-sample-config__hint {
+  padding: 0.8rem 0.9rem;
+  border-radius: var(--radius-control);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.ribote-sample-config__summary {
+  border: 1px solid rgba(20, 119, 130, 0.18);
+  background: rgba(247, 251, 252, 0.88);
+  color: var(--app-muted);
+}
+
+.ribote-codon-picker .ribote-sample-config__summary {
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.ribote-sample-config__hint {
+  border: 1px solid rgba(212, 90, 42, 0.26);
+  background: rgba(241, 199, 182, 0.24);
+  color: #934018;
+}
+
+.ribote-sample-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vh, 2rem) clamp(1rem, 3.5vw, 2.5rem);
+}
+
+.ribote-sample-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 35, 42, 0.38);
+  backdrop-filter: blur(4px);
+}
+
+.ribote-sample-modal__dialog {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
+  width: min(64rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  margin: 1rem auto;
+  padding: 1.35rem;
+  overflow: auto;
+  border: 1px solid rgba(20, 119, 130, 0.16);
+  border-radius: 1rem;
+  background: rgba(247, 251, 252, 0.98);
+  box-shadow: 0 1rem 2.4rem rgba(16, 35, 42, 0.18);
+}
+
+.ribote-sample-modal__dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ribote-sample-modal__dialog-header h3 {
+  margin: 0;
+  color: var(--app-text);
+  font-family: var(--app-body-font);
+  font-size: 0.98rem;
+  font-weight: 800;
+}
+
+.ribote-sample-modal__dialog-header p {
+  margin: 0.32rem 0 0;
+  color: var(--app-muted);
+  font-family: var(--app-body-font);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.ribote-sample-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.35rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(20, 119, 130, 0.18);
+  border-radius: 0.7rem;
+  background: rgba(247, 251, 252, 0.9);
+  color: var(--app-text);
+  font-family: var(--app-body-font);
+  font-size: 0.68rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: none;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.ribote-sample-modal__dialog .module-parameter-field__label {
+  color: var(--app-text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.ribote-sample-modal__dialog .ribote-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  border: 1px solid rgba(20, 119, 130, 0.2);
+  border-radius: 0.5rem;
+  background: rgba(247, 251, 252, 0.92);
+  color: var(--app-text);
+  font-family: var(--app-body-font);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: none;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.ribote-sample-modal__close:hover,
+.ribote-sample-modal__dialog .ribote-btn:hover:not(:disabled) {
+  transform: translateY(-0.0625rem);
+  border-color: rgba(20, 119, 130, 0.28);
+  background: rgba(247, 251, 252, 0.98);
+  color: var(--app-text);
+}
+
+.ribote-sample-modal__dialog .ribote-btn--primary {
+  border-color: rgba(10, 89, 99, 0.18);
+  background: linear-gradient(135deg, rgba(10, 89, 99, 1), rgba(20, 119, 130, 1));
+  color: #f7fbfc;
+  box-shadow: 0 0.55rem 1rem rgba(10, 89, 99, 0.16);
+}
+
+.ribote-sample-modal__dialog .ribote-btn--primary:hover:not(:disabled) {
+  border-color: rgba(10, 89, 99, 0.18);
+  background: #084f59;
+  color: #f7fbfc;
+}
+
+.ribote-sample-modal__close:focus-visible,
+.ribote-sample-modal__dialog .ribote-btn:focus-visible {
+  outline: 2px solid rgba(20, 119, 130, 0.2);
+  outline-offset: 2px;
+  border-color: rgba(20, 119, 130, 0.42);
+}
+
+.ribote-sample-modal__dialog .ribote-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: none;
+}
+
+.ribote-sample-modal__body {
+  display: grid;
+  gap: 1rem;
+}
+
+.codon-modal-search {
+  gap: 0.5rem;
+}
+
+.codon-modal-search__input {
+  width: 100%;
+  min-height: 2.85rem;
+  border: 1px solid rgba(20, 119, 130, 0.18);
+  border-radius: 0.8rem;
+  background: rgba(223, 236, 239, 0.88);
+  color: var(--app-text);
+  font-family: var(--app-body-font);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.7rem 0.85rem;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.codon-modal-search__input::placeholder {
+  color: #70838a;
+}
+
+.codon-modal-search__input:focus {
+  border-color: var(--ribo-primary);
+  box-shadow: 0 0 0 2px rgba(20, 119, 130, 0.11);
+  outline: none;
+}
+
+.ribote-sample-modal__empty {
+  color: #7b8d94;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.ribote-sample-modal__hint {
+  padding: 0.85rem 1rem;
+  border-radius: 0.85rem;
+  background: rgba(216, 237, 240, 0.65);
+  color: var(--app-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.ribote-sample-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ribote-sample-modal__dialog .ribote-codon-card {
+  min-height: 2.15rem;
+  border-radius: 0.57rem;
+  font-family: var(--app-body-font);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.013em;
+}
+
+.ribote-codon-results,
+.ribote-codon-view {
+  display: grid;
+  gap: 1rem;
+}
+
+.ribote-codon-results .ribote-canvas-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+.ribote-codon-results .ribote-canvas-tab-stack {
+  display: grid;
+  gap: 1.15rem;
+  margin-top: 0.65rem;
+}
+
+.ribote-canvas-group-row {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.codon-results-head {
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ribote-canvas-group-row__label {
+  color: rgba(20, 119, 130, 0.78);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ribote-codon-results .ribote-canvas-view-tab-panel {
+  display: grid;
+  padding: 1rem 1rem 1.05rem;
+  border: 0.0625rem solid rgba(20, 119, 130, 0.16);
+  border-radius: 1.1rem;
+  background: linear-gradient(180deg, rgba(247, 251, 252, 0.98), rgba(231, 240, 242, 0.88));
+  box-shadow: inset 0 0.0625rem 0 rgba(255, 255, 255, 0.82), 0 0.35rem 1rem rgba(16, 35, 42, 0.04);
+}
+
+.ribote-codon-results .ribote-canvas-view-tab-panel__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.55rem 0.8rem;
+}
+
+.ribote-codon-results .ribote-canvas-view-tab-panel__eyebrow {
+  color: rgba(20, 119, 130, 0.78);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ribote-codon-results .ribote-canvas-view-tab-panel__title {
+  color: var(--rm-text);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.ribote-codon-results .ribote-canvas-view-tab-panel__divider {
+  height: 0.0625rem;
+  background: linear-gradient(90deg, rgba(212, 90, 42, 0.22), rgba(20, 119, 130, 0.08));
+}
+
+.ribote-codon-results .ribote-canvas-tab {
+  border: 0.0625rem solid rgba(20, 119, 130, 0.2);
+  border-radius: 0.68rem;
+  background: rgba(247, 251, 252, 0.85);
+  color: var(--rm-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.36rem 0.72rem;
+  transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.ribote-codon-results .ribote-canvas-tab:hover,
+.ribote-codon-results .ribote-canvas-tab.is-active {
+  transform: translateY(-0.0625rem);
+  border-color: rgba(212, 90, 42, 0.28);
+  color: var(--rm-text);
+}
+
+.ribote-codon-results .ribote-canvas-tabs--results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 0.75rem;
+  align-items: stretch;
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.ribote-codon-results .ribote-canvas-tabs--results .ribote-canvas-tab {
+  min-height: 2.25rem;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-color: rgba(20, 119, 130, 0.28);
+  background: linear-gradient(180deg, rgba(247, 251, 252, 0.98), rgba(231, 240, 242, 0.96));
+  box-shadow: 0 0.125rem 0.25rem rgba(16, 35, 42, 0.05), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.78);
+  color: var(--rm-text);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-align: left;
+  padding: 0.42rem 0.72rem;
+  transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.ribote-codon-results .ribote-canvas-tabs--results .ribote-canvas-tab:hover {
+  transform: translateY(-0.125rem);
+  border-color: rgba(212, 90, 42, 0.42);
+  background: linear-gradient(180deg, rgba(247, 251, 252, 1), rgba(230, 239, 242, 1));
+  box-shadow: 0 0.4rem 1rem rgba(16, 35, 42, 0.08), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.9);
+}
+
+.ribote-codon-results .ribote-canvas-tabs--results .ribote-canvas-tab:focus-visible {
+  outline: 0.125rem solid rgba(212, 90, 42, 0.72);
+  outline-offset: 0.12rem;
+  border-color: rgba(212, 90, 42, 0.48);
+}
+
+.ribote-codon-results .ribote-canvas-tabs--results .ribote-canvas-tab.is-active {
+  transform: translateY(-0.0625rem);
+  border-color: rgba(212, 90, 42, 0.56);
+  background: linear-gradient(180deg, rgba(212, 90, 42, 0.18), rgba(212, 90, 42, 0.08));
+  box-shadow: 0 0.5rem 1.1rem rgba(212, 90, 42, 0.16), inset 0 0 0 0.0625rem rgba(212, 90, 42, 0.16);
+  color: #76320f;
+}
+
+.codon-results-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.ribote-codon-panel-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.ribote-codon-panel-grid--stacked {
+  grid-template-columns: 1fr;
+}
+
+.ribote-codon-results .ribote-d3-card {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem 1.1rem;
+  border: 0.0625rem solid rgba(10, 89, 99, 0.28);
+  border-radius: 0.8rem;
+  background: rgba(247, 251, 252, 0.82);
+  box-shadow: 0 0.12rem 0.3rem rgba(16, 35, 42, 0.05), 0 0 0 0.08rem rgba(20, 119, 130, 0.08);
+}
+
+.ribote-codon-results .ribote-d3-card__title {
+  margin: 0;
+  color: var(--rm-text);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.ribote-codon-results .ribote-gsea-table-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ribote-codon-results .ribote-gsea-table-copy {
+  margin: 0.3rem 0 0;
+  color: var(--rm-muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.ribote-codon-results .ribote-gsea-table-wrap {
+  overflow-x: auto;
+  border: 0.0625rem solid rgba(20, 119, 130, 0.16);
+  border-radius: var(--radius-field);
+}
+
+.ribote-codon-results .ribote-enrichment-table {
+  width: 100%;
+  min-width: 96rem;
+  border-collapse: collapse;
+}
+
+.ribote-codon-results .ribote-enrichment-table thead {
+  background: rgba(216, 237, 240, 0.72);
+}
+
+.ribote-codon-table td,
+.ribote-codon-table th {
+  white-space: nowrap;
+}
+
+.ribote-codon-results .ribote-enrichment-table th,
+.ribote-codon-results .ribote-enrichment-table td {
+  padding: 0.68rem 0.78rem;
+  border-bottom: 0.0625rem solid rgba(20, 119, 130, 0.14);
+  color: var(--rm-text);
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ribote-codon-results .ribote-enrichment-table th {
+  font-weight: 800;
+}
+
+.ribote-codon-results .ribote-enrichment-table tbody tr {
+  transition: background 0.18s ease;
+}
+
+.ribote-codon-results .ribote-enrichment-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.ribote-codon-results .ribote-enrichment-table tbody tr:hover {
+  background: rgba(216, 237, 240, 0.28);
+}
+
+.ribote-codon-host {
+  position: relative;
+}
+
+.ribote-codon-host .ribote-d3-host {
+  position: relative;
+  width: 100%;
+  min-height: 18rem;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.ribote-codon-host .ribote-d3-chart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  font-family: var(--app-body-font);
+}
+
+.ribote-codon-host .ribote-d3-grid line {
+  stroke: rgba(20, 119, 130, 0.14);
+}
+
+.ribote-codon-host .ribote-d3-axis-label,
+.ribote-codon-host .ribote-d3-axis-tick {
+  fill: #000;
+  font-family: var(--app-body-font);
+}
+
+.ribote-codon-host .ribote-d3-axis-label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ribote-codon-host .ribote-d3-axis-tick {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ribote-codon-host .ribote-d3-caption,
+.ribote-codon-host .ribote-d3-legend {
+  fill: #000;
+  font-family: var(--app-body-font);
+  font-size: 14px;
+}
+
+.ribote-codon-host .ribote-d3-legend--library {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ribote-codon-host .ribote-d3-caption--library {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ribote-codon-host .ribote-d3-chart-title {
+  fill: #000;
+  font-family: var(--app-body-font);
+}
+
+.ribote-codon-host .ribote-d3-chart-title--library {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.ribote-codon-host .ribote-d3-chart-subtitle {
+  fill: var(--rm-muted);
+  font-family: var(--app-body-font);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ribote-codon-host .ribote-d3-axis-text {
+  fill: #000;
+  font-family: var(--app-body-font);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ribote-codon-results .ribote-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  border: 0.0625rem solid transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0 1rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.ribote-codon-results .ribote-btn:hover:not(:disabled) {
+  transform: translateY(-0.0625rem);
+}
+
+.ribote-codon-results .ribote-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.ribote-codon-results .ribote-btn--secondary {
+  border-color: rgba(20, 119, 130, 0.2);
+  background: rgba(247, 251, 252, 0.9);
+  color: var(--rm-text);
+}
+
+.ribote-codon-results .ribote-table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ribote-codon-results .ribote-table-pagination__meta {
+  color: var(--rm-muted);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.ribote-codon-results .ribote-table-pagination__actions {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ribote-codon-results .ribote-table-pagination__pages {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ribote-codon-results .ribote-table-pagination__actions .ribote-btn {
+  min-height: 2.2rem;
+  padding: 0 0.78rem;
+  font-size: 0.78rem;
+}
+
+.ribote-codon-results .ribote-table-pagination__actions .ribote-btn.is-active {
+  border-color: rgba(212, 90, 42, 0.55);
+  background: linear-gradient(180deg, rgba(212, 90, 42, 0.18), rgba(212, 90, 42, 0.08));
+  color: #76320f;
+  box-shadow: 0 0.32rem 0.9rem rgba(212, 90, 42, 0.18);
+}
+
+.ribote-codon-results .ribote-table-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  color: var(--rm-muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+@media (min-width: 72rem) {
+  .ribote-codon-panel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ribote-codon-panel-grid--stacked {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 72rem) {
+  .codon-module-page {
+    --codon-single-control-width: calc((100% - var(--codon-parameter-gap)) / 2);
+  }
+
+  .ribote-codon-picker__grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .ribote-codon-picker__grid--modal {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 64rem) {
+  .ribote-codon-results .ribote-canvas-tab-stack {
+    gap: 1rem;
+    margin-top: 0.55rem;
+  }
+
+  .ribote-codon-results .ribote-canvas-view-tab-panel {
+    padding: 0.9rem;
+  }
+
+  .ribote-codon-results .ribote-canvas-tabs--results,
+  .codon-results-tabs {
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  }
+}
+
+@media (max-width: 48rem) {
+  .codon-module-page {
+    --codon-single-control-width: 100%;
+  }
+
+  .ribote-sample-modal {
+    padding: 1rem;
+  }
+
+  .ribote-sample-modal__dialog {
+    width: min(42rem, 92vw);
+    max-height: 86vh;
+    padding: 1.1rem;
+  }
+
+  .ribote-codon-picker__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .ribote-codon-picker__grid--modal {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ribote-codon-results .ribote-canvas-tabs--results,
+  .codon-results-tabs {
+    grid-template-columns: 1fr;
+  }
+}

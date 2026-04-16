@@ -1,0 +1,183 @@
+.export-menu__field {
+  display: grid;
+  gap: 6px;
+}
+
+.export-menu__field span {
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--app-placeholder);
+}
+
+.export-menu__input {
+  min-height: 34px;
+  font-size: 0.8rem;
+}
+
+.export-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+}
+
+.export-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 35, 42, 0.18);
+  backdrop-filter: blur(3px);
+}
+
+.export-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(520px, calc(100vw - 72px));
+  overflow: hidden;
+  border: 2px solid var(--app-border);
+  border-radius: 24px;
+  background: var(--app-card);
+  box-shadow: 0 28px 70px rgba(16, 35, 42, 0.18);
+}
+
+.export-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px 18px;
+  border-bottom: 1px solid var(--app-border-soft);
+}
+
+.export-modal__title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.export-modal__badge {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: var(--ribo-primary);
+  color: #fff;
+}
+
+.export-modal__head h3 {
+  margin: 0;
+  font-family: var(--app-display-font);
+  font-size: 0.94rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.export-modal__head p {
+  margin: 5px 0 0;
+  color: var(--app-muted);
+  font-size: 0.74rem;
+  max-width: 300px;
+}
+
+.export-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--app-placeholder);
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.export-modal__close:hover {
+  background: var(--app-surface-soft);
+  color: var(--app-text);
+}
+
+.export-modal__body {
+  display: grid;
+  gap: 18px;
+  padding: 20px 24px 22px;
+}
+
+.export-modal__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+.export-modal__format-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.export-modal__format-option {
+  min-height: 44px;
+  border: 2px solid var(--app-border);
+  border-radius: 15px;
+  background: var(--app-card);
+  color: var(--app-placeholder);
+  font-size: 0.86rem;
+  font-weight: 800;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.export-modal__format-option.is-active {
+  border-color: rgba(212, 90, 42, 0.54);
+  background: linear-gradient(180deg, rgba(212, 90, 42, 0.18), rgba(212, 90, 42, 0.08));
+  color: var(--ribo-accent-warm-deep);
+}
+
+.export-modal__format-option:hover:not(:disabled) {
+  border-color: rgba(20, 119, 130, 0.42);
+}
+
+.export-modal__format-option:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.export-menu__field--full {
+  grid-column: 1 / -1;
+}
+
+.export-modal__actions {
+  padding: 16px 24px 22px;
+  border-top: 1px solid var(--app-border-soft);
+}
+
+.export-modal__submit {
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  border-radius: 17px;
+  background: var(--ribo-accent-warm);
+  color: #fffdf8;
+  font-size: 0.86rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 14px 28px rgba(212, 90, 42, 0.22);
+  transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.export-modal__submit:hover:not(:disabled) {
+  background: var(--ribo-accent-warm-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 18px 30px rgba(157, 79, 44, 0.28);
+}
+
+.export-modal__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
