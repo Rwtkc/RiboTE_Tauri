@@ -116,10 +116,20 @@ fn cleanup_session_cache_dirs() {
     }
 }
 
+fn stable_cache_root_key(cache_root: &Path) -> PathBuf {
+    if let Some(parent) = cache_root.parent() {
+        if let Ok(normalized_parent) = parent.canonicalize() {
+            if let Some(name) = cache_root.file_name() {
+                return normalized_parent.join(name);
+            }
+            return normalized_parent;
+        }
+    }
+    cache_root.to_path_buf()
+}
+
 fn cleanup_stale_cache_root(cache_root: &Path) {
-    let normalized_root = cache_root
-        .canonicalize()
-        .unwrap_or_else(|_| cache_root.to_path_buf());
+    let normalized_root = stable_cache_root_key(cache_root);
     let should_clean = cleaned_cache_roots()
         .lock()
         .map(|mut roots| roots.insert(normalized_root))
@@ -136,7 +146,8 @@ fn annotation_cache_dir(annotation_dir: &str) -> Result<PathBuf, String> {
         return Err(format!("Annotation Library directory does not exist: {}", root.display()));
     }
 
-    let cache_root = root.join(".ribote_desktop_cache");
+    let normalized_root = root.canonicalize().unwrap_or(root);
+    let cache_root = normalized_root.join(".ribote_desktop_cache");
     cleanup_stale_cache_root(&cache_root);
 
     let cache_dir = cache_root.join(cache_session_id());

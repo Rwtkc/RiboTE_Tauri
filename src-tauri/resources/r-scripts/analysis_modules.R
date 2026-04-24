@@ -871,6 +871,7 @@ gene_set_collection_values <- function(module_id, species_id) {
   if (identical(module_key, "gsea")) {
     return(switch(species_key,
       hg38 = c("hallmark", "reactome", "go_bp"),
+      mm10 = c("hallmark", "reactome", "go_bp", "kegg"),
       osa_IRGSP_1 = c("go_bp", "go_mf", "go_cc", "kegg"),
       character()
     ))
@@ -878,6 +879,7 @@ gene_set_collection_values <- function(module_id, species_id) {
   if (identical(module_key, "enrichment")) {
     return(switch(species_key,
       hg38 = c("go_bp", "go_mf", "go_cc", "kegg"),
+      mm10 = c("go_bp", "go_mf", "go_cc", "kegg"),
       osa_IRGSP_1 = c("go_bp", "go_mf", "go_cc", "kegg"),
       character()
     ))
@@ -910,12 +912,30 @@ gene_set_pattern <- function(collection, species_id, module_id) {
       NULL
     ))
   }
+  if (identical(species_key, "mm10") && identical(module_key, "gsea")) {
+    return(switch(collection,
+      hallmark = "^mh\\.all\\..*\\.Mm\\.symbols\\.gmt$",
+      reactome = "^m2\\.cp\\.reactome\\..*\\.Mm\\.symbols\\.gmt$",
+      go_bp = "^m5\\.go\\.bp\\..*\\.Mm\\.symbols\\.gmt$",
+      kegg = "^mm10\\.kegg\\.gmt$",
+      NULL
+    ))
+  }
   if (identical(species_key, "hg38") && identical(module_key, "enrichment")) {
     return(switch(collection,
       go_bp = "^c5\\.go\\.bp\\..*\\.Hs\\.symbols\\.gmt$",
       go_mf = "^c5\\.go\\.mf\\..*\\.Hs\\.symbols\\.gmt$",
       go_cc = "^c5\\.go\\.cc\\..*\\.Hs\\.symbols\\.gmt$",
       kegg = "^c2\\.cp\\.kegg_medicus\\..*\\.Hs\\.symbols\\.gmt$",
+      NULL
+    ))
+  }
+  if (identical(species_key, "mm10") && identical(module_key, "enrichment")) {
+    return(switch(collection,
+      go_bp = "^m5\\.go\\.bp\\..*\\.Mm\\.symbols\\.gmt$",
+      go_mf = "^m5\\.go\\.mf\\..*\\.Mm\\.symbols\\.gmt$",
+      go_cc = "^m5\\.go\\.cc\\..*\\.Mm\\.symbols\\.gmt$",
+      kegg = "^mm10\\.kegg\\.gmt$",
       NULL
     ))
   }

@@ -3,6 +3,7 @@ dist/
 src-tauri/target/
 RiboTE_release/
 r-lang/
+ribote_test/
 
 *.log
 .DS_Store

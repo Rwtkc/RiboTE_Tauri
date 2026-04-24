@@ -29,15 +29,18 @@ export interface AnalysisModuleConfig {
 
 const dataSpaces = ["TE Ratio", "RNA Abundance", "Ribo Abundance"];
 const humanGseaCollections = ["Hallmark", "Reactome", "GO Biological Process"];
+const mouseGseaCollections = ["Hallmark", "Reactome", "GO Biological Process", "KEGG"];
 const functionalCollections = ["GO Biological Process", "GO Molecular Function", "GO Cellular Component", "KEGG"];
 
 const gseaCollectionsBySpecies: Record<string, string[]> = {
   hg38: humanGseaCollections,
+  mm10: mouseGseaCollections,
   osa_IRGSP_1: functionalCollections
 };
 
 const enrichmentCollectionsBySpecies: Record<string, string[]> = {
   hg38: functionalCollections,
+  mm10: functionalCollections,
   osa_IRGSP_1: functionalCollections
 };
 
